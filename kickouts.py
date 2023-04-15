@@ -23,7 +23,9 @@ headers = {
     'Content-type': "application/json"
     }
 
-# replace with the job summary id from data import
+# replace with the job summary id from data import. the job summary id
+# is the uuid that is in the URL when you view a log in data import
+# like https://yourfolio/data-import/job-summary/dd6fd1f1-14cd-49eb-9a5a-1803db422468
 jobSummary = "c2e95ace-0417-4da0-a721-8deb9ede478a"
 
 # replace with marc file you were trying to load, can be anywhere on your computer if
