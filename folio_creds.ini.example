@@ -1,0 +1,4 @@
+[okapi]
+tenant = tenant
+token = token
+baseURL = https://yourOkapi
