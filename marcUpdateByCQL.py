@@ -28,19 +28,18 @@ headers = {
 #899 will search by identifier
 #020 will search by ISBN
 
-# search parameters, implement later
-fields_to_search = []
-
-requiredHoldingLocation = '2e19230b-aeeb-4419-92cb-853611611718'
 
 
 
+
+# the records you want to match
 marcSourceFile = "/Users/jrc88/folio-data-import-help/data/BNA_NEW_RECORDS_test1.mrc"
 with open("data/BNA_NEW_RECORDS_test1_matchedRecords.mrc", 'wb') as matchedFile, open("data/BNA_NEW_RECORDS_test1_unmatchedRecords.mrc", 'wb') as discardFile :
 	with open(marcSourceFile, 'rb') as marcfile:
 			marc_reader= MARCReader(marcfile)
 			for record in marc_reader:
 				queryChunks = []
+				#get the fields that contain your match points then arrange them into query strings
 				marc035 = record.get_fields('035')
 				for f in marc035:
 					sf = f.get_subfields('a')
@@ -63,8 +62,7 @@ with open("data/BNA_NEW_RECORDS_test1_matchedRecords.mrc", 'wb') as matchedFile,
 
 				print('query: ' + query)
 
-				#(oclc="(OCoLC)922930977" and (identifiers.value="bnabloom")) 
-				#https://okapi-cornell-test.folio.ebsco.com/search/instances?limit=100&query=(oclc="(OCoLC)922930977" and (identifiers.value="bnabloom")) sortby title
+				#send the queries to folio then write a matched and unmatched file
 
 				recordSearch = requests.get(baseURL + '/search/instances?limit=100&expandAll=true&query=(' + query + ')',headers=headers).json()
 				if recordSearch['totalRecords'] == 1: 
