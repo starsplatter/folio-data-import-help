@@ -8,3 +8,6 @@ The ini currently assumes you will be providing a token which you can get from y
 
 ## kickouts.py
 Generates a file of discards and a file of errors based on a job ID from data import and the original file you were importing. **You must use the original file because matching is based on the order of the records.** We cannot recreate the file from data import because no MARC exists in FOLIO for MARC records that were not saved. We match on order because title is an even less reliable match point.
+
+## marcUpdateByCQL.py
+A WIP!! method of searching FOLIO and putting the matched record into your MARC so you can use data import and match on that field alone, effectively moving the need for complex matching out of the data import process and into a script you can control. Keep in mind there will be a lag between when you use this script for matching and when you load your records, that could be an issue if you have high churn in your database.
